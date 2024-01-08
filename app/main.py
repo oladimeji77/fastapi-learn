@@ -5,12 +5,13 @@ from sqlalchemy.orm import Session
 from database import engine, get_db
 import models
 from database import engine
+from config import settings
 
 from fastapi.middleware.cors import CORSMiddleware
 
 models.Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(title=settings.project_title, version=settings.project_version)
 
 origins=["*"]
 app.add_middleware(
